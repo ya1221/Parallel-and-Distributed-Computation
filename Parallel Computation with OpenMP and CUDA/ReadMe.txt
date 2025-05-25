@@ -1,13 +1,22 @@
-יהב יהושוע בריח - 326295417
-איתי יהודה בנדרסקי - 326621927
+This project compares three implementations of a heavy computation task:
+1. Sequential (CPU)
+2. Parallel with OpenMP
+3. Parallel with CUDA (GPU)
 
-על מנת להקל על הבדיקה מצורף קובץ Makefile שבו יש פקודות לקמפל את קבצי הפתרונות
-gcc seq.c -o s -lm -> עבור הסדרתי
-gcc -fopenmp openMP.c -o omp -lm -> עבור OpenMP
-nvcc  -gencode arch=compute_61,code=sm_61  cuda.cu -o cu -lm -> עבור CUDA
+The program runs a computationally expensive function over an array of randomly generated numbers.
+We measure execution time under various conditions (size, loopSize) and compare performance across the three methods.
 
-לכן על מנת להריץ את הפתרונות ניתן פשוט לכתוב את ההוראה make, ולאחר מכן קבצי הפתרונות יקומפלו.
-כדי להריץ את בקצי הפתרונות נבצע את השורות (דוגמאות עובר הרצת: size=100, loopSize=10) -
-./s 100 10 -> עבור סדרתי
-./omp 100 10 -> עבור OpenMP
-./cu 100 10 -> עבור CUDA
+
+To simplify the evaluation process, a Makefile is included with predefined compilation commands for all solution files:
+    gcc seq.c -o s -lm → for the sequential version
+    gcc -fopenmp openMP.c -o omp -lm → for the OpenMP version
+    nvcc -gencode arch=compute_61,code=sm_61 cuda.cu -o cu -lm → for the CUDA version
+
+Therefore, can simply run:
+make
+This will compile all solution files.
+
+Example execution (with size = 100 and loopSize = 10):
+./s 100 10      # Sequential
+./omp 100 10    # OpenMP
+./cu 100 10     # CUDA
