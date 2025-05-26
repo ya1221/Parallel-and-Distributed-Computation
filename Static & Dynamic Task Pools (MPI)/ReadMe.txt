@@ -1,8 +1,6 @@
-יהב יהושוע בריח -326295417
-איתי יהודה בנדרסקי - 326621927
+In both the static and dynamic solutions, process 0 (the master) does not perform the computation itself (except for summing the results). Therefore, to run with 3 workers, the program should be executed with 4 processes total (i.e., 3 workers and 1 master).
+Additionally, to enable the built-in mathematical operations used in the code, the -lm flag must be added during compilation and execution.
 
-בפתרונות הסטטים והדינמיים - תהליך 0 (המאסטר) לא מבצע את פעולת החישוב (חוץ מחיבור כמובן), ולכן כדי להריץ 3 עובדים צריך להריץ את התכונית עם 4 תהליכים (ובכך 3 עובדים ומאסטר אחד).
-כמו כן, כדי להפעיל את הפעולות המתמטיות שבקוד המובנה מראש - כאשר מקמפלים ומרצים את הפתרונות צריך להוסיף בסוף -lm
-דוגמא לקמפול והרצת הפתרון הסטטי עם 3 עובדים-
+Example of compiling and running the static solution with 3 workers:
 mpicc static.c -o st -lm
 mpiexec -np 4 ./st -lm
